@@ -5,16 +5,16 @@ class Serie
   public string nome;
   public string genero;
   public int nota;
-  public DateTime dataLancamento;
+  public DateTime dataAdicionada;
 
 
-  public Serie(string nome, string genero, int nota, DateTime dataLancamento)
+  public Serie(string nome, string genero, int nota)
   {
     this.id = qtdAdicionadas;
     this.nome = nome;
     this.genero = genero;
     this.nota = nota;
-    this.dataLancamento = dataLancamento;
+    this.dataAdicionada = DateTime.Now;
 
     qtdAdicionadas++;
   }

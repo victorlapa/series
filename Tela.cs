@@ -18,46 +18,6 @@ class Tela
     Console.Clear();
   }
 
-  public void montarTelaSistema()
-  {
-    this.montarMoldura(0, 0, 79, 24);
-    this.montarLinhaHor(2, 0, 79);
-    this.centralizar(1, 0, 79, "Busca series");
-  }
-
-  public void montarMoldura(int ci, int li, int cf, int lf)
-  {
-    int col, lin;
-
-    // limpa a area em que será montada a moldura
-    this.limparArea(ci, li, cf, lf);
-
-    // desenha as linhas horizontais
-    for (col = ci; col <= cf; col++)
-    {
-      Console.SetCursorPosition(col, li);
-      Console.Write("-");
-      Console.SetCursorPosition(col, lf);
-      Console.Write("-");
-    }
-
-    // desenha as linhas verticais
-    for (lin = li; lin <= lf; lin++)
-    {
-      Console.SetCursorPosition(ci, lin);
-      Console.Write("|");
-      Console.SetCursorPosition(cf, lin);
-      Console.Write("|");
-    }
-
-    // desenha os cantos da moldura
-    Console.SetCursorPosition(ci, li); Console.Write("+");
-    Console.SetCursorPosition(ci, lf); Console.Write("+");
-    Console.SetCursorPosition(cf, li); Console.Write("+");
-    Console.SetCursorPosition(cf, lf); Console.Write("+");
-  }
-
-
   public void limparArea(int ci, int li, int cf, int lf)
   {
     int col, lin;
@@ -112,16 +72,13 @@ class Tela
     lf = li + menu.Count() + 2;
 
     // monta a moldura do menu
-    this.montarMoldura(ci, li, cf, lf);
 
     // mostra as opções do menu
     for (x = 0; x < menu.Count(); x++)
     {
-      Console.SetCursorPosition(ci + 1, li + x + 1);
-      Console.Write(menu[x]);
+      Console.WriteLine(menu[x]);
     }
-    Console.SetCursorPosition(ci + 1, li + x + 1);
-    Console.Write("Opção : ");
+    Console.WriteLine("Opção : ");
     op = Console.ReadLine();
     return op;
   }
@@ -131,7 +88,7 @@ class Tela
   {
     string resp = "S";
     Console.SetCursorPosition(col, lin);
-    Console.Write(perg);
+    Console.WriteLine(perg);
     if (resp is not null)
     {
       resp = Console.ReadLine();
@@ -141,5 +98,22 @@ class Tela
     {
       return "Resposta vazia.";
     }
+  }
+
+  public int perguntarInt(int col, int lin, string perg)
+  {
+    int resp = -1000;
+    Console.SetCursorPosition(col, lin);
+    Console.Write(perg);
+    while (resp >= 0 && resp < 11)
+    {
+      resp = int.Parse(Console.ReadLine());
+
+      if (resp < 0 && resp > 10)
+      {
+        Console.WriteLine(perg);
+      }
+    }
+    return resp;
   }
 }
