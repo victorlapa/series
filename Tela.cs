@@ -18,21 +18,9 @@ class Tela
     Console.Clear();
   }
 
-  public void limparArea(int ci, int li, int cf, int lf)
+  public void limparArea()
   {
-    int col, lin;
-    // para cada coluna
-    for (col = ci; col <= cf; col++)
-    {
-      // em cada uma das linahs
-      for (lin = li; lin <= lf; lin++)
-      {
-        // posiciona
-        Console.SetCursorPosition(col, lin);
-        // imprime 1 espaço em branco para "limpar"
-        Console.Write(" ");
-      }
-    }
+    Console.Clear();
   }
 
 
@@ -84,10 +72,9 @@ class Tela
   }
 
 
-  public string perguntar(int col, int lin, string perg)
+  public string perguntar(string perg)
   {
     string resp = "S";
-    Console.SetCursorPosition(col, lin);
     Console.WriteLine(perg);
     if (resp is not null)
     {
@@ -100,19 +87,13 @@ class Tela
     }
   }
 
-  public int perguntarInt(int col, int lin, string perg)
+  public int perguntarInt(string perg)
   {
     int resp = -1000;
-    Console.SetCursorPosition(col, lin);
-    Console.Write(perg);
-    while (resp >= 0 && resp < 11)
+    Console.WriteLine(perg);
+    while (resp < 0 || resp > 10)
     {
       resp = int.Parse(Console.ReadLine());
-
-      if (resp < 0 && resp > 10)
-      {
-        Console.WriteLine(perg);
-      }
     }
     return resp;
   }
